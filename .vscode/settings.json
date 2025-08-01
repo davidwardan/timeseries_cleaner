@@ -1,0 +1,29 @@
+{
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.mypyEnabled": false,
+    "python.linting.pylamaEnabled": false,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#2fa4a7",
+        "activityBar.background": "#2fa4a7",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#f1cdf0",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#2fa4a7",
+        "statusBar.background": "#247d7f",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#2fa4a7",
+        "statusBarItem.remoteBackground": "#247d7f",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#247d7f",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#247d7f99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#247D7f"
+}
