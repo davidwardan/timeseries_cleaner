@@ -1,0 +1,6 @@
+"""Default parameters used across the library."""
+
+DEFAULT_OUTLIER_METHOD = "zscore"
+DEFAULT_ZSCORE_THRESHOLD = 3.0
+DEFAULT_IQR_FACTOR = 1.5
+DEFAULT_ROLLING_WINDOW = 10
