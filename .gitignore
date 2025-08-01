@@ -1,6 +1,9 @@
 __pycache__/
-*.py[cod]
+*.pyc
+*.pyo
 *.egg-info/
-.DS_Store
 .env
 .cache/
+dist/
+build/
+examples/*.png
