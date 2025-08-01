@@ -1,4 +1,5 @@
 """Time‑series resampling transformer."""
+
 from __future__ import annotations
 
 import pandas as pd
@@ -7,7 +8,9 @@ from ..utils import logger
 
 
 class Resampler:  # noqa: D101
-    def __init__(self, rule: str = "D", method: str = "mean", interpolate: bool = False):
+    def __init__(
+        self, rule: str = "D", method: str = "mean", interpolate: bool = False
+    ):
         """Resample a Series/DataFrame.
 
         Parameters

@@ -1,4 +1,5 @@
 """Plotting helpers for before/after diagnostics."""
+
 from __future__ import annotations
 
 from typing import Optional
@@ -49,7 +50,9 @@ class Plotter:  # noqa: D101
         if ax is None:
             fig, ax = plt.subplots(figsize=(10, 4))
         ax.plot(original.index, original.values, label="Original", alpha=0.4)
-        ax.scatter(outliers.index, outliers.values, color="red", label="Outliers", zorder=5)
+        ax.scatter(
+            outliers.index, outliers.values, color="red", label="Outliers", zorder=5
+        )
         ax.plot(cleaned.index, cleaned.values, label="Cleaned", alpha=0.9)
         ax.set_title(title)
         ax.set_xlabel("Time")

@@ -1,4 +1,5 @@
 """Trend removal using Facebook Prophet."""
+
 from __future__ import annotations
 
 import warnings
@@ -11,11 +12,20 @@ from ..utils import logger
 try:
     from prophet import Prophet  # fbprophet renamed to prophet
 except ModuleNotFoundError as exc:  # pragma: no cover
-    raise ModuleNotFoundError("`prophet` is required for ProphetTrendRemover. Run `pip install prophet`." ) from exc
+    raise ModuleNotFoundError(
+        "`prophet` is required for ProphetTrendRemover. Run `pip install prophet`."
+    ) from exc
 
 
 class ProphetTrendRemover:  # noqa: D101
-    def __init__(self, growth: str = "linear", seasonality_mode: str = "additive", daily: bool = False, weekly: bool = True, yearly: bool = True):
+    def __init__(
+        self,
+        growth: str = "linear",
+        seasonality_mode: str = "additive",
+        daily: bool = False,
+        weekly: bool = True,
+        yearly: bool = True,
+    ):
         self.growth = growth
         self.seasonality_mode = seasonality_mode
         self.daily = daily
@@ -31,15 +41,21 @@ class ProphetTrendRemover:  # noqa: D101
         df.columns = ["ds", "y"]
         with warnings.catch_warnings():  # supress Stan warnings
             warnings.simplefilter("ignore")
-            self._model = Prophet(growth=self.growth, seasonality_mode=self.seasonality_mode)
+            self._model = Prophet(
+                growth=self.growth, seasonality_mode=self.seasonality_mode
+            )
             if self.daily:
                 self._model.add_seasonality(name="daily", period=1, fourier_order=5)
             if self.weekly:
                 self._model.add_seasonality(name="weekly", period=7, fourier_order=3)
             if self.yearly:
-                self._model.add_seasonality(name="yearly", period=365.25, fourier_order=10)
+                self._model.add_seasonality(
+                    name="yearly", period=365.25, fourier_order=10
+                )
             self._model.fit(df)
-        logger.info("Prophet model fitted for trend extraction (%s points)", len(series))
+        logger.info(
+            "Prophet model fitted for trend extraction (%s points)", len(series)
+        )
         return self
 
     def transform(self, series: pd.Series) -> pd.Series:

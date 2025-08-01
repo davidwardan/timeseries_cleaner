@@ -1,4 +1,5 @@
 """Outlier detection & removal transformer."""
+
 from __future__ import annotations
 
 import numpy as np
@@ -8,7 +9,9 @@ from ..utils import logger
 
 
 class OutlierRemover:  # noqa: D101
-    def __init__(self, method: str = "zscore", threshold: float = 3.0, window: int = 10):
+    def __init__(
+        self, method: str = "zscore", threshold: float = 3.0, window: int = 10
+    ):
         self.method = method
         self.threshold = float(threshold)
         self.window = int(window)
@@ -59,9 +62,13 @@ class OutlierRemover:  # noqa: D101
         return cleaned
 
     def _rolling_mad(self, series: pd.Series):
-        rolling_median = series.rolling(self.window, center=True, min_periods=1).median()
+        rolling_median = series.rolling(
+            self.window, center=True, min_periods=1
+        ).median()
         mad = lambda x: np.median(np.abs(x - np.median(x)))
-        rolling_mad = series.rolling(self.window, center=True, min_periods=1).apply(mad, raw=True)
+        rolling_mad = series.rolling(self.window, center=True, min_periods=1).apply(
+            mad, raw=True
+        )
         diff = np.abs(series - rolling_median)
         cleaned = series[diff < self.threshold * rolling_mad]
         logger.debug("Rolling MAD removed %d outliers", len(series) - len(cleaned))
