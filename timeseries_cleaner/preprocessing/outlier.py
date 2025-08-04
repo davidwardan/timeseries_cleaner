@@ -8,7 +8,7 @@ import pandas as pd
 from ..utils import logger
 
 
-class OutlierRemover:  # noqa: D101
+class OutlierRemover:
     def __init__(
         self, method: str = "zscore", threshold: float = 3.0, window: int = 10
     ):
@@ -17,10 +17,8 @@ class OutlierRemover:  # noqa: D101
         self.window = int(window)
         self.series_name: str | None = None
 
-    # ------------------------------------------------------------------
     # Public API
-    # ------------------------------------------------------------------
-    def fit(self, series: pd.Series):  # noqa: D401 (simple verb is fine)
+    def fit(self, series: pd.Series):
         """No‑op fit, kept for compatibility & metadata."""
         if not isinstance(series, pd.Series):
             raise TypeError("Input must be a pandas Series.")
@@ -28,7 +26,7 @@ class OutlierRemover:  # noqa: D101
         logger.debug("Fitting OutlierRemover on %d observations", len(series))
         return self
 
-    def transform(self, series: pd.Series) -> pd.Series:  # noqa: D401
+    def transform(self, series: pd.Series) -> pd.Series:
         if not isinstance(series, pd.Series):
             raise TypeError("Input must be a pandas Series.")
         if self.method == "zscore":
@@ -42,9 +40,7 @@ class OutlierRemover:  # noqa: D101
     def fit_transform(self, series: pd.Series) -> pd.Series:
         return self.fit(series).transform(series)
 
-    # ------------------------------------------------------------------
     # Internal helpers
-    # ------------------------------------------------------------------
     def _zscore(self, series: pd.Series):
         z = (series - series.mean()) / series.std(ddof=0)
         cleaned = series[np.abs(z) < self.threshold]

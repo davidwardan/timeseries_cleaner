@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-class Plotter:  # noqa: D101
+class Plotter:
     # ------------------------------------------------------------------
     @staticmethod
     def compare_series(
